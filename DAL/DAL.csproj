@@ -51,14 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL.Interfaces\Entites\BaseEntity.cs" />
     <Compile Include="DAL.Interfaces\Repositories\IArticleRepository.cs" />
+    <Compile Include="DAL.Interfaces\Repositories\ICommentRepository.cs" />
     <Compile Include="DAL.Interfaces\Repositories\IUserRepository.cs" />
-    <Compile Include="DAL\Entites\DalArticle.cs" />
-    <Compile Include="DAL.Interfaces\Entites\IEntity.cs" />
-    <Compile Include="DAL\Entites\DalUser.cs" />
+    <Compile Include="DAL\Entites\Article.cs" />
+    <Compile Include="DAL\Entites\Comment.cs" />
+    <Compile Include="DAL\Entites\User.cs" />
     <Compile Include="DAL.Interfaces\Repositories\IGenericRepository.cs" />
     <Compile Include="DAL.Interfaces\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="DAL\Repositories\ArticleRepository.cs" />
+    <Compile Include="DAL\Repositories\CommentRepository.cs" />
     <Compile Include="DAL\Repositories\GenericRepository.cs" />
     <Compile Include="DAL\Repositories\UserRepository.cs" />
     <Compile Include="ApplicationDbContext\ApplicationDbContext.cs" />
@@ -70,6 +72,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SF\SF.csproj">
+      <Project>{cae39479-a6ba-4c68-95cc-4a838bb7dd77}</Project>
+      <Name>SF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

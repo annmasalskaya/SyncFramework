@@ -2,8 +2,8 @@
 
 namespace DAL.Interfaces.Repositories
 {
-    public interface IUserRepository: IGenericRepository<DalUser>
+    public interface IUserRepository: IGenericRepository<User>
     {
-        DalUser GetBy(string login);
+        User GetBy(string login);
     }
 }

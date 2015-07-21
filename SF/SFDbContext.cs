@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using SF.Entites;
 
-namespace SF.DbContext
+namespace SF.SFDbContext
 {
 
     public class SFDbContext : DbContext

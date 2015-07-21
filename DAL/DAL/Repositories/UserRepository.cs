@@ -7,7 +7,7 @@ using DAL.Entites;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : GenericRepository<DalUser>, IUserRepository
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
         public UserRepository(DbContext context)
             : base(context)
@@ -15,7 +15,7 @@ namespace DAL.Repositories
 
         }
 
-        public DalUser GetBy(string login)
+        public User GetBy(string login)
         {
             return GetBy(u => u.Login == login).SingleOrDefault();
         }

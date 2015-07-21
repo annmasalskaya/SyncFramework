@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using DAL.Interfaces.Entites;
 using DAL.Interfaces.Repositories;
+using SF.Entites;
 
 namespace DAL.Repositories
 {
@@ -40,9 +40,9 @@ namespace DAL.Repositories
             return _dbSet.Remove(entity);
         }
 
-        public TEntity Update(TEntity entity)
+        public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
     }
 }

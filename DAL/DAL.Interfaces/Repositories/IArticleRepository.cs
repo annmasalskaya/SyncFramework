@@ -9,6 +9,6 @@ namespace DAL.Interfaces.Repositories
 {
     interface IArticleRepository : IGenericRepository<Article>
     {
-
+        
     }
 }

@@ -6,7 +6,7 @@ using SF.Entites;
 
 namespace DAL.Entites
 {
-    class Comment : AuditableEntity
+    public class Comment : AuditableEntity
     {
         public int UserId { get; set; }
 
@@ -14,5 +14,8 @@ namespace DAL.Entites
 
         [ForeignKey("UserId")]
         public virtual User Author { get; set; }
+
+        [ForeignKey("ArticleId")]
+        public virtual Article Article { get; set; }
     }
 }

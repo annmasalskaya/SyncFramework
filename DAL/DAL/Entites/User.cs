@@ -11,6 +11,6 @@ namespace DAL.Entites
 
         public virtual IEnumerable<Article> Articles { get; set; }
 
-        
+        public virtual IEnumerable<Comment> Comments { get; set; }   
     }
 }

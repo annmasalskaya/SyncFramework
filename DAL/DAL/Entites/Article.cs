@@ -10,7 +10,6 @@ namespace DAL.Entites
 {
     public class Article: AuditableEntity
     {
-
         public string Title { get; set; }
 
         public string Body { get; set; }
@@ -19,5 +18,7 @@ namespace DAL.Entites
 
         [ForeignKey("UserId")]
         public virtual User Author { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
