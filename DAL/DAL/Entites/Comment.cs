@@ -6,7 +6,7 @@ using SF.Entites;
 
 namespace DAL.Entites
 {
-    public class Comment : AuditableEntity
+    public class Comment : AuditEntity
     {
         public int UserId { get; set; }
 
