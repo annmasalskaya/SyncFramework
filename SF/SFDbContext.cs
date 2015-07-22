@@ -36,11 +36,11 @@ namespace SF.SFDbContext
 
                     if (entry.State == EntityState.Added)
                     {
-                        entity.CreatedTimestap = now;
+                        entity.CreateTimestap = now;
                     }
                     else
                     {
-                        base.Entry(entity).Property(x => x.CreatedTimestap).IsModified = false;
+                        base.Entry(entity).Property(x => x.CreateTimestap).IsModified = false;
                     }
 
                     entity.UpdateTimestap = now;

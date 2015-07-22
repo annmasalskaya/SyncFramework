@@ -1,6 +1,6 @@
 ﻿namespace SF.Entites
 {
-    public interface IEntity
+    interface IEntity
     {
         int Id { get; set; }
     }

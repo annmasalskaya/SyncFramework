@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SF.Entites;
 
 namespace SF.Entites
 {
-    public abstract class SoftDeleteEntity
+    public abstract class SoftDeleteEntity: ISoftDeleteEntity
     {
         public DateTime DeleteTimestap { get; set; }
 
-        public virtual void onDelete();
+        public virtual void onDelete() {}
     }
 }
