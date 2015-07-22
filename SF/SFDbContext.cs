@@ -24,26 +24,26 @@ namespace SF.SFDbContext
         public override int SaveChanges()
         {
             var modifiedEntries = ChangeTracker.Entries()
-                .Where(x => x.Entity is IAuditableEntity
+                .Where(x => x.Entity is IAuditEntity
                     && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
             foreach (var entry in modifiedEntries)
             {
-                IAuditableEntity entity = entry.Entity as IAuditableEntity;
+                IAuditEntity entity = entry.Entity as IAuditEntity;
                 if (entity != null)
                 {
                     DateTime now = DateTime.UtcNow;
 
                     if (entry.State == EntityState.Added)
                     {
-                        entity.CreatedDate = now;
+                        entity.CreatedTimestap = now;
                     }
                     else
                     {
-                        base.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
+                        base.Entry(entity).Property(x => x.CreatedTimestap).IsModified = false;
                     }
 
-                    entity.UpdatedDate = now;
+                    entity.UpdateTimestap = now;
                 }
             }
 
