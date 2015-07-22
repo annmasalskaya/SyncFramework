@@ -8,7 +8,7 @@ using SF.Entites;
 
 namespace DAL.Entites
 {
-    public class Article: AuditEntity
+    public class Article : AuditEntity
     {
         public string Title { get; set; }
 

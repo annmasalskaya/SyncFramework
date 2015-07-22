@@ -2,7 +2,7 @@
 
 namespace SF.Entites {
 
-    interface ISoftDeleteEntity
+    interface ISoftDeleteEntity 
     {
         DateTime DeleteTimestap { get; set; }
     }

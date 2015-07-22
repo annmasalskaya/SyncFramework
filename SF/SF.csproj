@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entites.Interfaces\ISoftDeleteEntity.cs" />
+    <Compile Include="Entites\SFEntity.cs" />
     <Compile Include="Entites\SoftDeleteEntity.cs" />
     <Compile Include="SFDbContext.cs" />
     <Compile Include="Entites\BaseEntity.cs" />
