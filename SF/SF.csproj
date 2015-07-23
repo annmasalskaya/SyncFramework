@@ -47,13 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entites.Interfaces\ISoftDeleteEntity.cs" />
+    <Compile Include="Entites.Interfaces\IVersionEntity.cs" />
     <Compile Include="Entites\SFEntity.cs" />
-    <Compile Include="Entites\SoftDeleteEntity.cs" />
     <Compile Include="SFDbContext.cs" />
     <Compile Include="Entites\BaseEntity.cs" />
     <Compile Include="Entites.Interfaces\IAuditEntity.cs" />
     <Compile Include="Entites.Interfaces\IEntity.cs" />
-    <Compile Include="Entites\AuditEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
