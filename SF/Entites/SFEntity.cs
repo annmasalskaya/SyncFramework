@@ -18,7 +18,7 @@ namespace SF.Entites
         public DateTime DeleteTimestap
         { get; set; }
 
-        public void onDelete()
+        public virtual void onDelete()
         {
         }
 
