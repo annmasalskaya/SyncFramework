@@ -6,6 +6,6 @@ namespace SF.Entites {
     {
         DateTime DeleteTimestap { get; set; }
 
-        void onDelete() { }
+        void onDelete();
     }
 }
