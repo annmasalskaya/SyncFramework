@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SF.Entites;
+using System.Data.Entity.Infrastructure;
+using SF;
 
 namespace SF.SFDbContext
 {
@@ -23,11 +25,22 @@ namespace SF.SFDbContext
 
         public override int SaveChanges()
         {
+            var deletedEntries = ChangeTracker.Entries().Where(p => p.State == EntityState.Deleted);
+            SoftDelete(deletedEntries);
+
             var modifiedEntries = ChangeTracker.Entries()
                 .Where(x => x.Entity is IAuditEntity
                     && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
-            foreach (var entry in modifiedEntries)
+            UpdateEntites(modifiedEntries);
+
+
+            return base.SaveChanges();
+        }
+
+        private void UpdateEntites(IEnumerable<DbEntityEntry> entries)
+        {
+            foreach (var entry in entries)
             {
                 IAuditEntity entity = entry.Entity as IAuditEntity;
                 if (entity != null)
@@ -46,8 +59,20 @@ namespace SF.SFDbContext
                     entity.UpdateTimestap = now;
                 }
             }
+        }
 
-            return base.SaveChanges();
+        private void SoftDelete(IEnumerable<DbEntityEntry> entries)
+        {
+            foreach (var entry in entries)
+            {
+                ISoftDeleteEntity entity = entry.Entity as ISoftDeleteEntity;
+                if (entity != null)
+                {
+                    DateTime now = DateTime.UtcNow;
+                    entity.DeleteTimestap = now;
+                    entry.State = EntityState.Modified;
+                }
+            }
         }
     }
 }
