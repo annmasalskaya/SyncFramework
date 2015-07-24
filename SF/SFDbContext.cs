@@ -4,9 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using SF.Entites;
 using System.Data.Entity.Infrastructure;
-using SF;
 
-namespace SF.SFDbContext
+namespace SF
 {
 
     public class SFDbContext : DbContext
@@ -27,14 +26,12 @@ namespace SF.SFDbContext
         {
             var deletedEntries = ChangeTracker.Entries().Where(p => p.State == EntityState.Deleted);
             SoftDelete(deletedEntries);
-
+            
             var modifiedEntries = ChangeTracker.Entries()
-                .Where(x => x.Entity is IAuditEntity
+                .Where(x => x.Entity is IAuditable
                     && (x.State == EntityState.Added || x.State == EntityState.Modified));
-
             UpdateEntites(modifiedEntries);
-
-
+        
             return base.SaveChanges();
         }
 
@@ -42,37 +39,44 @@ namespace SF.SFDbContext
         {
             foreach (var entry in entries)
             {
-                IAuditEntity entity = entry.Entity as IAuditEntity;
+                IAuditable entity = entry.Entity as IAuditable;
                 if (entity != null)
                 {
                     DateTime now = DateTime.UtcNow;
 
                     if (entry.State == EntityState.Added)
                     {
-                        entity.CreateTimestap = now;
+                        entity.CreateTimestamp = now;
                     }
                     else
                     {
-                        base.Entry(entity).Property(x => x.CreateTimestap).IsModified = false;
+                        base.Entry(entity).Property(x => x.CreateTimestamp).IsModified = false;
                     }
 
-                    entity.UpdateTimestap = now;
+                    entity.UpdateTimestamp = now;
                 }
+
             }
         }
 
         private void SoftDelete(IEnumerable<DbEntityEntry> entries)
-        {
+        {     
             foreach (var entry in entries)
             {
-                ISoftDeleteEntity entity = entry.Entity as ISoftDeleteEntity;
+                ISoftDeletable entity = entry.Entity as ISoftDeletable;
                 if (entity != null)
                 {
-                    DateTime now = DateTime.UtcNow;
-                    entity.DeleteTimestap = now;
                     entry.State = EntityState.Modified;
+                    DateTime now = DateTime.UtcNow;
+                    entity.isDeleted = true;
+                    entity.DeletedTimestamp = now;
                 }
+                entity.OnDeleting(this);
             }
+
+            var cascadeDeletedEntries = ChangeTracker.Entries().Where(p => p.State == EntityState.Deleted);
+            if (cascadeDeletedEntries.Count() > 0)
+                SoftDelete(cascadeDeletedEntries);
         }
     }
 }
