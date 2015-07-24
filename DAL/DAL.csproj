@@ -61,7 +61,7 @@
     <Compile Include="DAL\Repositories\CommentRepository.cs" />
     <Compile Include="DAL\Repositories\GenericRepository.cs" />
     <Compile Include="DAL\Repositories\UserRepository.cs" />
-    <Compile Include="ApplicationDbContext\ApplicationDbContext.cs" />
+    <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DAL\UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
