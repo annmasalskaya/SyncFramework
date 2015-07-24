@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SF.Entites
 {
-    interface IVersionEntity
+    interface IVersionable
     {
         int Version { get; set; }
     }

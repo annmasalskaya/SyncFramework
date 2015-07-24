@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DAL.Repositories
+namespace DAL.Repositories
 {
-    class ArticleRepository : GenericRepository<Article>, IArticleRepository
+    public class ArticleRepository : GenericRepository<Article>, IArticleRepository
     {
         public ArticleRepository(DbContext context)
             : base(context)
@@ -18,6 +18,9 @@ namespace DAL.DAL.Repositories
 
         }
 
+        public Article GetBy(int id){
+            return GetBy(a => a.Id == id).SingleOrDefault();
+        }
       
     }
 }

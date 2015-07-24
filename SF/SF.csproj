@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entites.Interfaces\ISoftDeleteEntity.cs" />
-    <Compile Include="Entites.Interfaces\IVersionEntity.cs" />
+    <Compile Include="Entites.Interfaces\ISoftDeletable.cs" />
+    <Compile Include="Entites.Interfaces\IVersionable.cs" />
     <Compile Include="Entites\SFEntity.cs" />
     <Compile Include="SFDbContext.cs" />
     <Compile Include="Entites\BaseEntity.cs" />
-    <Compile Include="Entites.Interfaces\IAuditEntity.cs" />
+    <Compile Include="Entites.Interfaces\IAuditable.cs" />
     <Compile Include="Entites.Interfaces\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
