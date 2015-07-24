@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DAL.Repositories
+namespace DAL.Repositories
 {
-    class CommentRepository : GenericRepository<Comment>, ICommentRepository
+    public class CommentRepository : GenericRepository<Comment>, ICommentRepository
     {
         public CommentRepository(DbContext context)
             : base(context)
