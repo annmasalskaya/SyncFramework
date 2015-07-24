@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SF.Entites;
+using SF;
 
 namespace DAL.Entites
 {
     public class Article : SFEntity
     {
+        public Article()
+        {
+            Comments = new HashSet<Comment>();
+        }
+
         public string Title { get; set; }
 
         public string Body { get; set; }
-        
-        public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual User Author { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public override void OnDeleting(SFDbContext context)
+        {
+            foreach (var comment in context.Set<Comment>().ToList())
+            {
+                context.Set<Comment>().Remove(comment);
+            }
+        }
     }
 }
