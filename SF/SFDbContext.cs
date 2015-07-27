@@ -9,7 +9,7 @@ using System.Data.Entity.Infrastructure;
 namespace SF
 {
 
-    public partial class SFDbContext : DbContext
+    public class SFDbContext : DbContext
     {
         public SFDbContext()
             : base()
