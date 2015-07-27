@@ -5,7 +5,7 @@ namespace SF.Entites {
 
     interface ISoftDeletable 
     {
-        bool isDeleted { get; set; }
+        bool IsDeleted { get; set; }
 
         DateTime? DeletedTimestamp { get; set; }
 
