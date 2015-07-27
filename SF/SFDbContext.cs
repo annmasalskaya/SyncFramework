@@ -39,8 +39,10 @@ namespace SF
                 .Where(x => x.Entity is IAuditable
                     && (x.State == EntityState.Added || x.State == EntityState.Modified));
             UpdateEntites(modifiedEntries);
+            UpdateVersion(modifiedEntries);
 
             return base.SaveChanges();
+
         }
 
         private void UpdateEntites(IEnumerable<DbEntityEntry> entries)
