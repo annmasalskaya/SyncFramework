@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using SF.Entites;
 using EntityFramework.DynamicFilters;
+using SF.Entites.Interfaces;
 
 
 namespace SF
@@ -56,14 +57,14 @@ namespace SF
 
                     if (entry.State == EntityState.Added)
                     {
-                        entity.CreateTimestamp = now;
+                        entity.CreatedTimestamp = now;
                     }
                     else
                     {
-                        base.Entry(entity).Property(x => x.CreateTimestamp).IsModified = false;
+                        base.Entry(entity).Property(x => x.CreatedTimestamp).IsModified = false;
                     }
 
-                    entity.UpdateTimestamp = now;
+                    entity.UpdatedTimestamp = now;
                 }
             }
         }
