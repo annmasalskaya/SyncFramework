@@ -4,12 +4,13 @@ using System.Linq;
 using System.Data.Entity;
 using DAL.Interfaces.Repositories;
 using DAL.Entites;
+using SF;
 
 namespace DAL.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public UserRepository(DbContext context)
+        public UserRepository(SFDbContext context)
             : base(context)
         {
 
