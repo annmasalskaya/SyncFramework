@@ -1,7 +1,8 @@
 ﻿using System;
 
 
-namespace SF.Entites {
+namespace SF.Entites.Interfaces
+{
 
     interface ISoftDeletable 
     {

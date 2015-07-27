@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace SF.Entites
+namespace SF.Entites.Interfaces
 {
     interface IAuditable
     {
-       DateTime CreateTimestamp { get; set; }
+       DateTime CreatedTimestamp { get; set; }
 
-       DateTime UpdateTimestamp { get; set; }
+       DateTime UpdatedTimestamp { get; set; }
     }
 }

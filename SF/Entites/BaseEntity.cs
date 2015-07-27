@@ -1,4 +1,5 @@
-﻿namespace SF.Entites
+﻿using SF.Entites.Interfaces;
+namespace SF.Entites
 {
     public abstract class BaseEntity : IEntity
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SF.Entites
+namespace SF.Entites.Interfaces
 {
     interface IVersionable
     {
