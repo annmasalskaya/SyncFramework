@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Entites;
 using SF;
 
+
 namespace DAL
 {
     public class ApplicationDbContext : SFDbContext

@@ -3,6 +3,7 @@ using System.Linq;
 using SF.Entites;
 using SF;
 
+
 namespace DAL.Entites
 {
     public class User : SFEntity
@@ -22,12 +23,12 @@ namespace DAL.Entites
         public virtual ICollection<Comment> Comments { get; set; }
 
         public override void OnDeleting(SFDbContext context){
-            foreach (var article in context.Set<Article>().ToList())
+            foreach (var article in this.Articles.ToList())
             {
                 context.Set<Article>().Remove(article);
             }
 
-            foreach (var comment in context.Set<Comment>().ToList())
+            foreach (var comment in this.Comments.ToList())
             {
                 context.Set<Comment>().Remove(comment);
             }

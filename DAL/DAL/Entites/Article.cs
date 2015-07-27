@@ -4,6 +4,7 @@ using System.Linq;
 using SF.Entites;
 using SF;
 
+
 namespace DAL.Entites
 {
     public class Article : SFEntity
@@ -23,7 +24,7 @@ namespace DAL.Entites
 
         public override void OnDeleting(SFDbContext context)
         {
-            foreach (var comment in context.Set<Comment>().ToList())
+            foreach (var comment in this.Comments.ToList())
             {
                 context.Set<Comment>().Remove(comment);
             }

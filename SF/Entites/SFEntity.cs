@@ -12,7 +12,7 @@ namespace SF.Entites
 
         public DateTime UpdateTimestamp { get;  set; }
 
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public DateTime? DeletedTimestamp { get;  set; }
 
