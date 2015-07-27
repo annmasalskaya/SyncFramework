@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Linq;
-using EntityFramework.Filters;
 using SF.Entites;
-using System.Data.Entity.Infrastructure;
+using EntityFramework.DynamicFilters;
+
 
 namespace SF
 {
@@ -25,10 +26,7 @@ namespace SF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
- 	         modelBuilder.Conventions
-                 .Add(FilterConvention.Create<SFEntity>("ActiveEntities", e => e.IsDeleted == false));
-        
-            this.EnableFilter("ActiveEntities");
+            modelBuilder.Filter("IsDeleted", (ISoftDeletable d) => d.IsDeleted, false); 
         }
 
         public override int SaveChanges()
