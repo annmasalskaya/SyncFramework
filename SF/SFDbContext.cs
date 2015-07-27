@@ -66,6 +66,19 @@ namespace SF
             }
         }
 
+        private void UpdateVersion(IEnumerable<DbEntityEntry> entries)
+        {
+            foreach (var entry in entries)
+            {
+                IVersionable entity = entry.Entity as IVersionable;
+                if (entity != null)
+                {
+                    entity.Version++;
+                }
+            }
+        }
+        
+
         private void SoftDelete(IEnumerable<DbEntityEntry> entries)
         {
             foreach (var entry in entries)
