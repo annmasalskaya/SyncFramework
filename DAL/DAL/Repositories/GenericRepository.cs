@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using DAL.Interfaces.Repositories;
 using SF.Entites;
+using EntityFramework.DynamicFilters;
 
 namespace DAL.Repositories
 {
@@ -29,6 +30,18 @@ namespace DAL.Repositories
             IEnumerable<TEntity> query = _dbSet.Where(predicate).AsEnumerable();
             return query;
         }
+
+        public IEnumerable<TEntity> GetByWithoutFilters(Expression<Func<TEntity, bool>> predicate)
+        {
+            _dbContext.DisableAllFilters();
+            
+            IEnumerable<TEntity> result = _dbSet.Where(predicate).ToList<TEntity>();
+           
+            _dbContext.EnableAllFilters();
+            
+            return result;
+        }
+
 
         public TEntity Create(TEntity entity)
         {

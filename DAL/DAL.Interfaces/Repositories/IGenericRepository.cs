@@ -10,6 +10,8 @@ namespace DAL.Interfaces.Repositories
     {
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> GetByWithoutFilters(Expression<Func<TEntity, bool>> predicate);
+
 
         TEntity Create(TEntity entity);
         TEntity Delete(TEntity entity);
