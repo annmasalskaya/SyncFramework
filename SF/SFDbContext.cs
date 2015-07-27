@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using EntityFramework.Filters;
 using SF.Entites;
 using System.Data.Entity.Infrastructure;
 
 namespace SF
 {
 
-    public class SFDbContext : DbContext
+    public partial class SFDbContext : DbContext
     {
         public SFDbContext()
             : base()
@@ -22,16 +23,25 @@ namespace SF
 
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+ 	         modelBuilder.Conventions
+                 .Add(FilterConvention.Create<SFEntity>("ActiveEntities", e => e.IsDeleted == false));
+        
+            this.EnableFilter("ActiveEntities");
+        }
+
         public override int SaveChanges()
         {
-            var deletedEntries = ChangeTracker.Entries().Where(p => p.State == EntityState.Deleted);
+            var deletedEntries = ChangeTracker.Entries()
+                .Where(p => p.State == EntityState.Deleted);
             SoftDelete(deletedEntries);
-            
+
             var modifiedEntries = ChangeTracker.Entries()
                 .Where(x => x.Entity is IAuditable
                     && (x.State == EntityState.Added || x.State == EntityState.Modified));
             UpdateEntites(modifiedEntries);
-        
+
             return base.SaveChanges();
         }
 
@@ -55,12 +65,11 @@ namespace SF
 
                     entity.UpdateTimestamp = now;
                 }
-
             }
         }
 
         private void SoftDelete(IEnumerable<DbEntityEntry> entries)
-        {     
+        {
             foreach (var entry in entries)
             {
                 ISoftDeletable entity = entry.Entity as ISoftDeletable;
@@ -68,7 +77,7 @@ namespace SF
                 {
                     entry.State = EntityState.Modified;
                     DateTime now = DateTime.UtcNow;
-                    entity.isDeleted = true;
+                    entity.IsDeleted = true;
                     entity.DeletedTimestamp = now;
                 }
                 entity.OnDeleting(this);
