@@ -32,9 +32,9 @@ namespace SFTest
                 var user1 = new User { Login = "Anna1", Password = "123" };
                 var user2 = new User { Login = "Anna2", Password = "123" };
 
-                userRepo.Create(user1);
-                userRepo.Create(user2);
-                uow.Commit();
+              //  userRepo.Create(user1);
+                //userRepo.Create(user2);
+               // uow.Commit();
 
                 var users = userRepo.GetAll();
 
@@ -50,22 +50,22 @@ namespace SFTest
                 Console.ReadLine();
 
                 // Creating user article
-                // var article1 = new Article { Title = "Article1", Body = "Article1 BodyText" };
+                 var article1 = new Article { Title = "Article1", Body = "Article1 BodyText" };
 
-                //  var anna = userRepo.GetBy(user1.Login);
-
-
-                // userRepo.Delete(anna);
-                //anna.Articles.Add(article1);
-                //uow.Commit();
+                 var anna2 = userRepo.GetBy(user2.Login);
 
 
-                // var comment1 = new Comment { Body = "Article1 is my first arctile. (Anna)" };
-                /*                var articleRepo = new ArticleRepository(dbContext);
-                anna.Comments.Add(comment1);
-                article1.Comments.Add(comment1);
+                 userRepo.Delete(anna2);
+               // anna2.Articles.Add(article1);
                 uow.Commit();
-                */
+
+
+                /*var comment1 = new Comment { Body = "Article1 is my first arctile. (Anna)" };
+                               var articleRepo = new ArticleRepository(dbContext);
+                anna2.Comments.Add(comment1);
+                article1.Comments.Add(comment1);
+                uow.Commit();*/
+                
 
             }
         }
