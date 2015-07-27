@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SF.Entites.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace SF.Entites
 {
     public abstract class SFEntity : BaseEntity, IAuditable, ISoftDeletable, IVersionable
     {
-        public DateTime CreateTimestamp { get; set; }
+        public DateTime CreatedTimestamp { get; set; }
 
-        public DateTime UpdateTimestamp { get;  set; }
+        public DateTime UpdatedTimestamp { get;  set; }
 
         public bool IsDeleted { get; set; }
 
